@@ -341,9 +341,9 @@
 
       // ---------- 状态 ----------
       let yesClickCount = 0;
-      const MAX_SHRINK = 0.15;
-      const SHRINK_FACTOR = 0.85;
-      const NO_GROW_FACTOR = 1.18;
+      const MAX_SHRINK = 0.08;        // 最小能缩到 8%（原来 15%）
+      const SHRINK_FACTOR = 0.75;     // 每次乘 0.75（原来 0.85）
+      const NO_GROW_FACTOR = 1.35;    // NO 每次放大 1.35 倍（原来 1.18）
 
       let yesFixed = false;
       // 用于记录原始位置，但我们用rect
@@ -377,7 +377,7 @@
       // 更新no按钮尺寸（每次yes点击后变大）
       function updateNoButtonSize() {
         const scale = Math.pow(NO_GROW_FACTOR, yesClickCount);
-        const maxScale = 5.0;
+        const maxScale = 8.0;          // 原来 5.0
         const finalScale = Math.min(scale, maxScale);
         // 保留可爱的emoji和文字，但整体缩放
         noBtn.style.transform = `scale(${finalScale})`;
